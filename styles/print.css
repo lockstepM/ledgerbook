@@ -1,0 +1,111 @@
+/* Print: force light, hide chrome, page-break discipline.
+   Used both for single-module print (screen content) and unit print (print-root). */
+
+@page {
+  margin: 16mm 14mm;
+}
+
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --ledger-tint: #eef2ec;
+  --ledger-line: #b9c7b4;
+  --ink: #111111;
+  --ink-soft: #333333;
+  --graphite: #555555;
+  --hairline: #cccccc;
+  --rule-red: #b3382c;
+  --accent: #2c5f45;
+  --accent-soft: #eef2ec;
+  --callout-exam-bg: #f1f5f1;
+  --callout-exam-edge: #2c5f45;
+  --callout-trap-bg: #f9efed;
+  --callout-trap-edge: #b3382c;
+  --callout-mnemonic-bg: #f6f2e6;
+  --callout-mnemonic-edge: #8a6d1f;
+  --callout-rule-bg: #edf1f5;
+  --callout-rule-edge: #2f4d6b;
+  --shadow-1: none;
+}
+
+body { background: #ffffff; font-size: 10.5pt; }
+
+.topbar,
+.sidebar,
+.sidebar-scrim,
+.module-actions,
+.module-footer,
+.nav-toggle,
+.skip-link { display: none !important; }
+
+.layout { display: block; }
+.content { padding: 0; }
+.module-frame { max-width: none; margin: 0; }
+
+/* When printing a whole unit, screen content is hidden and print-root shown */
+body.printing-unit .layout { display: none; }
+body.printing-unit .print-root { display: block; }
+
+.print-root { display: none; }
+
+.print-unit-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+  page-break-after: always;
+}
+.print-unit-cover .unit-code {
+  font-family: var(--font-figures);
+  color: var(--accent);
+  font-size: 14pt;
+}
+.print-unit-cover h1 {
+  font-family: var(--font-display);
+  font-size: 30pt;
+  margin: 0.2em 0;
+}
+.print-unit-cover .print-meta {
+  color: var(--graphite);
+  font-size: 10pt;
+}
+
+.print-module { page-break-before: always; }
+.print-module:first-of-type { page-break-before: auto; }
+
+.print-module .module-eyebrow { font-size: 8.5pt; }
+
+h1.module-heading { font-size: 22pt; margin: 0.15em 0 0.4em; }
+
+.prose h2 {
+  page-break-after: avoid;
+  font-size: 15pt;
+  border-top: 1px solid var(--hairline);
+  padding-top: 0.5em;
+  margin-top: 1.4em;
+}
+.prose h3 { page-break-after: avoid; font-size: 11.5pt; }
+
+.recap { border: 1px solid var(--accent); }
+
+.journal, .schedule, .callout, .diagram, .table-wrap, .recap {
+  page-break-inside: avoid;
+  box-shadow: none;
+}
+
+.table-wrap { overflow: visible; }
+.schedule-scroll { overflow: visible; }
+
+.prose table, .journal table, .schedule table { font-size: 9pt; }
+
+.diagram {
+  border: 1px solid var(--hairline);
+  text-align: center;
+}
+.diagram svg { max-width: 100%; height: auto; }
+
+.slides-only-notice { border: 1px solid var(--callout-mnemonic-edge); }
+
+a { color: inherit; text-decoration: none; }

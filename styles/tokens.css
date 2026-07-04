@@ -1,0 +1,89 @@
+/* Design tokens. Signature: classic ledger-paper vernacular — pale paper,
+   green ledger tint, double red rule reserved for money columns and traps. */
+
+:root {
+  color-scheme: light;
+
+  --paper: #faf8f2;
+  --surface: #ffffff;
+  --surface-raised: #fdfcf8;
+  --ledger-tint: #e8efe6;
+  --ledger-line: #cfdccb;
+  --ink: #16211c;
+  --ink-soft: #43514a;
+  --graphite: #5a6660;
+  --hairline: #dcd8cc;
+  --rule-red: #b3382c;
+  --rule-red-soft: #f6e4e1;
+  --accent: #2c5f45;
+  --accent-soft: #dfe9e2;
+  --focus: #2c5f45;
+
+  --callout-exam-bg: #eef3ee;
+  --callout-exam-edge: #2c5f45;
+  --callout-trap-bg: #f9ecea;
+  --callout-trap-edge: #b3382c;
+  --callout-mnemonic-bg: #f3efe3;
+  --callout-mnemonic-edge: #8a6d1f;
+  --callout-rule-bg: #e9eef3;
+  --callout-rule-edge: #2f4d6b;
+
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-figures: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+
+  --size-0: 0.8125rem;
+  --size-1: 0.9375rem;
+  --size-2: 1.0625rem;
+  --size-3: 1.375rem;
+  --size-4: 1.75rem;
+  --size-5: 2.375rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.25rem;
+  --space-7: 3.5rem;
+
+  --radius-1: 4px;
+  --radius-2: 8px;
+
+  --sidebar-w: 19rem;
+  --content-max: 46rem;
+
+  --shadow-1: 0 1px 2px rgba(22, 33, 28, 0.07), 0 2px 8px rgba(22, 33, 28, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --paper: #14201b;
+    --surface: #1a2822;
+    --surface-raised: #203029;
+    --ledger-tint: #1e2f27;
+    --ledger-line: #2e453a;
+    --ink: #e6e9e3;
+    --ink-soft: #b7c2ba;
+    --graphite: #8fa097;
+    --hairline: #33403a;
+    --rule-red: #d4695e;
+    --rule-red-soft: #3a2523;
+    --accent: #7fb99a;
+    --accent-soft: #24382e;
+    --focus: #7fb99a;
+
+    --callout-exam-bg: #1e2f27;
+    --callout-exam-edge: #7fb99a;
+    --callout-trap-bg: #33221f;
+    --callout-trap-edge: #d4695e;
+    --callout-mnemonic-bg: #2e2a1c;
+    --callout-mnemonic-edge: #cdb163;
+    --callout-rule-bg: #1f2a33;
+    --callout-rule-edge: #7da3c4;
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+}

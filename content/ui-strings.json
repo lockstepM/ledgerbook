@@ -1,0 +1,56 @@
+{
+  "appName": "Ledgerbook",
+  "appTagline": "FAR condensed notes",
+  "nav": {
+    "unitsLabel": "Units",
+    "progressLabel": "read",
+    "slidesOnlyBadge": "slides only",
+    "pendingBadge": "coming soon"
+  },
+  "module": {
+    "lessonsSuffix": "lessons",
+    "markRead": "Mark as read",
+    "markUnread": "Mark as unread",
+    "printModule": "Print module",
+    "printUnit": "Print unit",
+    "slidesOnlyNotice": "Summarized from lecture slides only — no transcript was available for this module. Cross-check details against your primary materials.",
+    "prevModule": "Previous",
+    "nextModule": "Next"
+  },
+  "home": {
+    "title": "FAR condensed notes",
+    "intro": "One module per page, in Becker order. Journals, schedules, and comparison tables are rendered in ledger format; diagrams are for rapid revision. Tap a module to begin.",
+    "examCountdownPrefix": "Exam in",
+    "examCountdownSuffix": "days",
+    "examPast": "Exam date has passed",
+    "readyCountLabel": "modules available",
+    "legendReady": "available",
+    "legendPending": "in production",
+    "legendSlides": "slides-only source"
+  },
+  "print": {
+    "printedFromPrefix": "Printed from",
+    "unitCoverSuffix": "condensed notes",
+    "preparing": "Preparing print view…"
+  },
+  "errors": {
+    "notFound": "That page doesn't exist. Pick a module from the left.",
+    "loadFailed": "Couldn't load this module. Check your connection and try again.",
+    "pendingBody": "This module hasn't been written yet. It will appear here as soon as it's ready."
+  },
+  "callouts": {
+    "EXAM": "Exam technique",
+    "TRAP": "Trap",
+    "MNEMONIC": "Mnemonic",
+    "RULE": "Rule"
+  },
+  "journal": {
+    "drLabel": "DR",
+    "crLabel": "CR",
+    "accountHeader": "Account",
+    "debitHeader": "Debit",
+    "creditHeader": "Credit"
+  },
+  "recap": { "title": "Quick recap" },
+  "toc": { "title": "On this page" }
+}

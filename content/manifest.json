@@ -1,0 +1,68 @@
+{
+  "appVersion": "1.0.0",
+  "examDate": "2026-07-17",
+  "units": [
+    {
+      "id": "F1",
+      "title": "Financial Reporting and Equity",
+      "modules": [
+        { "id": "M1", "title": "Financial Statements and Reporting", "status": "pending", "source": "full", "lessons": 10 },
+        { "id": "M2", "title": "SEC Reporting and Earnings per Share", "status": "pending", "source": "full", "lessons": 5 },
+        { "id": "M3", "title": "Stockholders' Equity and Treasury Stock", "status": "pending", "source": "full", "lessons": 6 },
+        { "id": "M4", "title": "Stock Issuances and Distributions", "status": "pending", "source": "full", "lessons": 2 }
+      ]
+    },
+    {
+      "id": "F2",
+      "title": "Revenue, Adjustments, and Analysis",
+      "modules": [
+        { "id": "M1", "title": "Revenue Recognition", "status": "pending", "source": "full", "lessons": 8 },
+        { "id": "M2", "title": "Accounting Changes and Error Corrections", "status": "pending", "source": "full", "lessons": 3 },
+        { "id": "M3", "title": "Adjusting Journal Entries", "status": "pending", "source": "full", "lessons": 2 },
+        { "id": "M4", "title": "Accounting Policies and Disclosures", "status": "pending", "source": "full", "lessons": 1 },
+        { "id": "M5", "title": "Subsequent Events", "status": "pending", "source": "full", "lessons": 1 },
+        { "id": "M6", "title": "Fair Value Measurements", "status": "pending", "source": "full", "lessons": 2 },
+        { "id": "M7", "title": "Special Purpose Frameworks", "status": "pending", "source": "full", "lessons": 2 },
+        { "id": "M8", "title": "Ratio Analysis and Performance Metrics", "status": "pending", "source": "full", "lessons": 3 }
+      ]
+    },
+    {
+      "id": "F3",
+      "title": "Assets",
+      "modules": [
+        { "id": "M1", "title": "Cash and Cash Equivalents", "status": "pending", "source": "full", "lessons": 2 },
+        { "id": "M2", "title": "Trade Receivables", "status": "pending", "source": "full", "lessons": 8 },
+        { "id": "M3", "title": "Inventory", "status": "ready", "source": "full", "lessons": 6 },
+        { "id": "M4", "title": "PP&E: Acquisition and Capitalization", "status": "pending", "source": "full", "lessons": 3 },
+        { "id": "M5", "title": "PP&E: Depreciation, Disposal, and Impairment", "status": "pending", "source": "full", "lessons": 5 },
+        { "id": "M6", "title": "Intangibles, Software, and Other Assets", "status": "pending", "source": "full", "lessons": 5 }
+      ]
+    },
+    {
+      "id": "F4",
+      "title": "Liabilities",
+      "modules": [
+        { "id": "M1", "title": "Payables, Exit Costs, and AROs", "status": "pending", "source": "full", "lessons": 4 },
+        { "id": "M2", "title": "Contingencies, Premiums, and Warranties", "status": "pending", "source": "full", "lessons": 2 },
+        { "id": "M3", "title": "Time Value of Money and Notes Payable", "status": "pending", "source": "full", "lessons": 7 },
+        { "id": "M4", "title": "Bonds Payable: Fundamentals", "status": "pending", "source": "full", "lessons": 7 },
+        { "id": "M5", "title": "Bond Amortization Methods", "status": "pending", "source": "full", "lessons": 7 },
+        { "id": "M6", "title": "Troubled Debt Restructuring and Extinguishment", "status": "pending", "source": "full", "lessons": 3 },
+        { "id": "M7", "title": "Leases", "status": "pending", "source": "full", "lessons": 8 }
+      ]
+    },
+    {
+      "id": "F5",
+      "title": "Investments, Consolidations, and Special Topics",
+      "modules": [
+        { "id": "M1", "title": "Financial Instruments", "status": "pending", "source": "slides", "lessons": 0 },
+        { "id": "M2", "title": "Equity Method Investments", "status": "pending", "source": "slides", "lessons": 0 },
+        { "id": "M3", "title": "Basic Consolidation Concepts", "status": "pending", "source": "slides", "lessons": 0 },
+        { "id": "M4", "title": "Partnerships", "status": "pending", "source": "slides", "lessons": 0 },
+        { "id": "M5", "title": "Statement of Cash Flows", "status": "pending", "source": "slides", "lessons": 0 },
+        { "id": "M6", "title": "Income Taxes", "status": "pending", "source": "slides", "lessons": 0 },
+        { "id": "M7", "title": "Uncertain Tax Positions", "status": "pending", "source": "slides", "lessons": 0 }
+      ]
+    }
+  ]
+}
