@@ -153,49 +153,49 @@
         {
           "id": "M1",
           "title": "Payables, Exit Costs, and AROs",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 4
         },
         {
           "id": "M2",
           "title": "Contingencies, Premiums, and Warranties",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 2
         },
         {
           "id": "M3",
           "title": "Time Value of Money and Notes Payable",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 7
         },
         {
           "id": "M4",
           "title": "Bonds Payable: Fundamentals",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 7
         },
         {
           "id": "M5",
           "title": "Bond Amortization Methods",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 7
         },
         {
           "id": "M6",
           "title": "Troubled Debt Restructuring and Extinguishment",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 3
         },
         {
           "id": "M7",
           "title": "Leases",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 8
         }
