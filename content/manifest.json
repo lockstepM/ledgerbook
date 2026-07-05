@@ -43,56 +43,56 @@
         {
           "id": "M1",
           "title": "Revenue Recognition",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 8
         },
         {
           "id": "M2",
           "title": "Accounting Changes and Error Corrections",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 3
         },
         {
           "id": "M3",
           "title": "Adjusting Journal Entries",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 2
         },
         {
           "id": "M4",
           "title": "Accounting Policies and Disclosures",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 1
         },
         {
           "id": "M5",
           "title": "Subsequent Events",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 1
         },
         {
           "id": "M6",
           "title": "Fair Value Measurements",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 2
         },
         {
           "id": "M7",
           "title": "Special Purpose Frameworks",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 2
         },
         {
           "id": "M8",
           "title": "Ratio Analysis and Performance Metrics",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 3
         }
