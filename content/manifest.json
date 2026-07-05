@@ -250,9 +250,9 @@
         {
           "id": "M7",
           "title": "Uncertain Tax Positions",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 5
         }
       ]
     }
