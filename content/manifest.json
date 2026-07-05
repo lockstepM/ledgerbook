@@ -208,9 +208,9 @@
         {
           "id": "M1",
           "title": "Financial Instruments",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 10
         },
         {
           "id": "M2",
