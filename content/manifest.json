@@ -9,28 +9,28 @@
         {
           "id": "M1",
           "title": "Financial Statements and Reporting",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 10
         },
         {
           "id": "M2",
           "title": "SEC Reporting and Earnings per Share",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 5
         },
         {
           "id": "M3",
           "title": "Stockholders' Equity and Treasury Stock",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 6
         },
         {
           "id": "M4",
           "title": "Stock Issuances and Distributions",
-          "status": "pending",
+          "status": "ready",
           "source": "full",
           "lessons": 2
         }
