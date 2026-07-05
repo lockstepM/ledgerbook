@@ -243,9 +243,9 @@
         {
           "id": "M6",
           "title": "Income Taxes",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 4
         },
         {
           "id": "M7",
