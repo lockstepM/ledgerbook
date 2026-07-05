@@ -215,16 +215,16 @@
         {
           "id": "M2",
           "title": "Equity Method Investments",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 4
         },
         {
           "id": "M3",
           "title": "Basic Consolidation Concepts",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 8
         },
         {
           "id": "M4",
