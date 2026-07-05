@@ -229,16 +229,16 @@
         {
           "id": "M4",
           "title": "Partnerships",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 3
         },
         {
           "id": "M5",
           "title": "Statement of Cash Flows",
-          "status": "pending",
-          "source": "slides",
-          "lessons": 0
+          "status": "ready",
+          "source": "full",
+          "lessons": 5
         },
         {
           "id": "M6",
