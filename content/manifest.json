@@ -255,6 +255,54 @@
           "lessons": 5
         }
       ]
+    },
+    {
+      "id": "F6",
+      "title": "Not-for-Profit and Governmental Accounting",
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Not-for-Profit Accounting and Reporting Standards",
+          "status": "ready",
+          "source": "slides",
+          "lessons": 5
+        },
+        {
+          "id": "M2",
+          "title": "Not-for-Profit Statement of Cash Flows",
+          "status": "ready",
+          "source": "slides",
+          "lessons": 2
+        },
+        {
+          "id": "M3",
+          "title": "Contributions Received",
+          "status": "ready",
+          "source": "slides",
+          "lessons": 4
+        },
+        {
+          "id": "M4",
+          "title": "Transfers of Assets and Charitable Trusts",
+          "status": "ready",
+          "source": "slides",
+          "lessons": 3
+        },
+        {
+          "id": "M5",
+          "title": "Governmental Accounting and Reporting Concepts",
+          "status": "ready",
+          "source": "slides",
+          "lessons": 3
+        },
+        {
+          "id": "M6",
+          "title": "Governmental Fund Structure",
+          "status": "ready",
+          "source": "slides",
+          "lessons": 4
+        }
+      ]
     }
   ]
 }
