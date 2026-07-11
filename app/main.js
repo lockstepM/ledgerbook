@@ -56,12 +56,9 @@ function buildSidebar() {
           const href = `#/${unit.id}/${mod.id}`;
           const ready = mod.status === 'ready';
           const tick = ready && isRead(unit.id, mod.id) ? '✓' : '';
-          const badge =
-            mod.source === 'slides'
-              ? `<span class="badge badge-slides">${s.nav.slidesOnlyBadge}</span>`
-              : !ready
-                ? `<span class="badge">${s.nav.pendingBadge}</span>`
-                : '';
+          const badge = !ready
+            ? `<span class="badge">${s.nav.pendingBadge}</span>`
+            : '';
           return `<li><a class="module-link ${ready ? '' : 'is-pending'}" href="${href}" data-route="${unit.id}/${mod.id}">
             <span class="module-code">${mod.id}</span>
             <span class="module-title-text">${escapeHtml(mod.title)}</span>
