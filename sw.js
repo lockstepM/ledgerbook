@@ -2,7 +2,7 @@
    Bump CACHE_VERSION on deploys that change app code; content md/json use
    stale-while-revalidate so new modules appear without a version bump. */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `ledgerbook-${CACHE_VERSION}`;
 
 const APP_SHELL = [
