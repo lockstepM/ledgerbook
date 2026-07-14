@@ -14,20 +14,35 @@
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/screen.css">
   <link rel="stylesheet" href="styles/print.css" media="print">
+  <script>
+    /* Apply the saved theme before first paint to avoid a flash. */
+    try {
+      var t = localStorage.getItem('ledgerbook.theme');
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#content"></a>
 
   <header class="topbar">
-    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="sidebar">
+    <button class="icon-btn" id="nav-toggle" aria-expanded="true" aria-controls="sidebar" aria-label="Toggle navigation">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <a class="brand" href="#/" id="brand-link"></a>
     <span class="topbar-crumb" id="topbar-crumb"></span>
+    <button class="icon-btn" id="theme-toggle" aria-label="Switch color theme"></button>
   </header>
 
   <div class="layout">
-    <nav class="sidebar" id="sidebar" aria-label=""></nav>
+    <nav class="sidebar" id="sidebar" aria-label="">
+      <div class="sidebar-search">
+        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="search-input" placeholder="Search all topics…" autocomplete="off" spellcheck="false" aria-label="Search all topics">
+      </div>
+      <ul class="search-results" id="search-results" hidden></ul>
+      <div class="sidebar-nav" id="sidebar-nav"></div>
+    </nav>
     <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
     <main class="content" id="content" tabindex="-1"></main>
   </div>

@@ -123,8 +123,10 @@ body {
   white-space: nowrap;
 }
 
-.nav-toggle {
-  display: none;
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--hairline);
   background: var(--surface);
   color: var(--ink);
@@ -132,7 +134,11 @@ body {
   padding: var(--space-2);
   line-height: 0;
   cursor: pointer;
+  min-width: 40px;
+  min-height: 40px;
 }
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+#theme-toggle { margin-left: var(--space-2); }
 
 /* ---------- Layout ---------- */
 
@@ -245,7 +251,6 @@ body {
 .sidebar-scrim { display: none; }
 
 @media (max-width: 900px) {
-  .nav-toggle { display: inline-flex; }
   .layout { grid-template-columns: minmax(0, 1fr); }
   .sidebar {
     position: fixed;
@@ -269,6 +274,72 @@ body {
     z-index: 40;
   }
   .sidebar-scrim[hidden] { display: none; }
+}
+
+/* ---------- Sidebar search ---------- */
+
+.sidebar-search { position: relative; margin-bottom: var(--space-3); }
+.sidebar-search .search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--graphite);
+  pointer-events: none;
+}
+#search-input {
+  width: 100%;
+  font: inherit;
+  font-size: var(--size-1);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-2);
+  padding: var(--space-2) var(--space-3) var(--space-2) calc(var(--space-4) + 1.1em);
+  -webkit-appearance: none;
+  appearance: none;
+}
+#search-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--accent); }
+
+.search-results { list-style: none; margin: 0 0 var(--space-4); padding: 0; }
+.search-status { color: var(--graphite); font-size: var(--size-0); padding: var(--space-2); }
+.search-hit {
+  display: block;
+  padding: var(--space-2);
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline);
+}
+.search-hit:hover { background: var(--ledger-tint); }
+.search-hit-ref {
+  display: block;
+  font-family: var(--font-figures);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.search-hit-title { display: block; font-weight: 600; font-size: var(--size-1); }
+.search-hit-snip {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: var(--size-0);
+  color: var(--graphite);
+}
+
+mark {
+  background: color-mix(in srgb, var(--accent) 34%, var(--surface));
+  color: var(--ink);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Desktop: collapse the whole sidebar for a wider reading pane */
+@media (min-width: 901px) {
+  body.nav-collapsed .layout { grid-template-columns: minmax(0, 1fr); }
+  body.nav-collapsed .sidebar { display: none; }
 }
 
 /* ---------- Content column ---------- */
@@ -719,6 +790,95 @@ h1.module-heading {
   margin-top: var(--space-7);
   padding-top: var(--space-4);
   border-top: 1px solid var(--hairline);
+}
+
+/* ---------- Formula box: an equation, not a card ---------- */
+.formula-box {
+  background: var(--surface);
+  border: 1px solid var(--ledger-line);
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+  padding: var(--space-2) var(--space-3);
+  margin: var(--space-3) 0;
+  font-family: var(--font-figures);
+  font-size: 0.85rem;
+}
+.formula-line { font-variant-numeric: tabular-nums; line-height: 1.5; }
+.formula-line + .formula-line {
+  margin-top: var(--space-1);
+  padding-top: var(--space-1);
+  border-top: 1px dotted var(--hairline);
+}
+
+/* ---------- Cheat-sheet "Workpaper" screen layout ---------- */
+.module-frame.cheatsheet { max-width: 60rem; }
+.cheatsheet .prose { font-size: 0.9rem; }
+
+/* section headers = ruled ledger account headings */
+.cheatsheet .prose h2 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin: var(--space-5) 0 var(--space-3);
+  padding: 0 0 var(--space-1) var(--space-2);
+  border: 0;
+  border-left: 3px solid var(--rule-red);
+  border-bottom: 2px solid var(--accent);
+}
+.cheatsheet .prose h2:first-child { margin-top: 0; }
+.cheatsheet .prose h3 { margin-top: var(--space-3); font-size: 0.9rem; }
+.cheatsheet .prose p { margin: var(--space-2) 0; }
+.cheatsheet .prose ul, .cheatsheet .prose ol { margin: var(--space-2) 0; }
+.cheatsheet .prose li { margin: var(--space-1) 0; }
+.cheatsheet .prose li::marker { color: var(--rule-red); }
+
+/* comparison tables (.table-wrap only): green heading band + greenbar zebra */
+.cheatsheet .table-wrap { border-radius: 0; }
+.cheatsheet .table-wrap table { font-size: 0.82rem; }
+.cheatsheet .table-wrap thead th {
+  background: var(--accent);
+  color: var(--paper);
+  border-bottom: 0;
+  white-space: normal;
+}
+.cheatsheet .table-wrap tbody td {
+  padding: var(--space-1) var(--space-2);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.cheatsheet .table-wrap tbody tr:nth-child(even) td { background: var(--ledger-tint); }
+.cheatsheet .table-wrap tbody tr:hover td { background: color-mix(in srgb, var(--ledger-tint) 70%, transparent); }
+
+/* journal / callout / recap square off to match the ledger */
+.cheatsheet .journal { border-radius: 0; box-shadow: none; }
+.cheatsheet .journal tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--ledger-tint) 45%, transparent); }
+.cheatsheet .journal .je-amount { white-space: nowrap; }
+.cheatsheet .schedule { border-radius: 0; box-shadow: none; }
+.cheatsheet .callout { border-radius: 0; margin: var(--space-3) 0; }
+.cheatsheet .diagram { border-radius: 0; }
+.cheatsheet .diagram svg .node rect,
+.cheatsheet .diagram svg .node polygon,
+.cheatsheet .diagram svg .node circle,
+.cheatsheet .diagram svg .node path {
+  fill: var(--surface) !important;
+  stroke: var(--accent) !important;
+  stroke-width: 1px !important;
+}
+.cheatsheet .diagram svg .nodeLabel { color: var(--ink) !important; fill: var(--ink) !important; }
+.cheatsheet .diagram svg .edgePaths path,
+.cheatsheet .diagram svg .flowchart-link { stroke: var(--graphite) !important; }
+.cheatsheet .diagram svg .edgeLabel { background: var(--surface) !important; color: var(--ink-soft) !important; }
+.cheatsheet .recap { border-radius: 0; margin: var(--space-4) 0; }
+.cheatsheet .recap-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
 }
 
 /* ---------- Print root hidden on screen ---------- */

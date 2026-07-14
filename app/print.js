@@ -35,6 +35,7 @@ export async function printUnit(unit, strings, fetchModuleMd) {
 
   root.innerHTML = cover;
   for (const s of sections) root.appendChild(s);
+  root.classList.toggle('cheatsheet', unit.layout === 'cheatsheet');
 
   document.body.classList.add('printing-unit');
   const cleanup = () => {

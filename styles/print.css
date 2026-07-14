@@ -109,3 +109,134 @@ h1.module-heading { font-size: 22pt; margin: 0.15em 0 0.4em; }
 .slides-only-notice { border: 1px solid var(--callout-mnemonic-edge); }
 
 a { color: inherit; text-decoration: none; }
+
+/* ================================================================
+   Cheat-sheet "Workpaper" layout — landscape, column-ruled ledger.
+   ================================================================ */
+@page cheatsheet { size: landscape; margin: 10mm 11mm; }
+.module-frame.cheatsheet,
+.print-root.cheatsheet { page: cheatsheet; }
+
+/* Masthead: a titled workpaper header spanning the full page width */
+.cheatsheet h1.module-heading {
+  font-family: var(--font-display);
+  font-size: 15pt;
+  font-weight: 600;
+  margin: 0;
+}
+.cheatsheet .module-eyebrow {
+  font-family: var(--font-figures);
+  font-size: 6.6pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.cheatsheet .prose {
+  margin-top: 4pt;
+  padding-top: 5pt;
+  border-top: 1.4pt solid var(--ink);
+  column-width: 84mm;
+  column-gap: 9mm;
+  column-rule: 0.5pt solid var(--ledger-line);
+  font-size: 7.4pt;
+  line-height: 1.3;
+}
+.cheatsheet .prose > * { break-inside: avoid; }
+
+/* Section headers read as ruled ledger account headings */
+.cheatsheet .prose h2 {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin: 0.75em 0 0.35em;
+  padding: 0 0 2pt 6pt;
+  border: 0;
+  border-left: 3pt solid var(--rule-red);
+  border-bottom: 1.1pt solid var(--accent);
+  break-after: avoid;
+}
+.cheatsheet .prose h2:first-child { margin-top: 0; }
+.cheatsheet .prose h3 {
+  font-size: 7.4pt; font-weight: 700; color: var(--ink);
+  margin: 0.45em 0 0.15em;
+}
+.cheatsheet .prose p { margin: 0.24em 0; }
+.cheatsheet .prose ul, .cheatsheet .prose ol { margin: 0.2em 0; padding-left: 1em; }
+.cheatsheet .prose li { margin: 0.06em 0; }
+.cheatsheet .prose li::marker { color: var(--rule-red); }
+
+/* Tables: greenbar zebra, headed in green, always wrap (never clip) */
+.cheatsheet .table-wrap { margin: 0.35em 0; border: 0.5pt solid var(--ledger-line); border-radius: 0; box-shadow: none; overflow: visible; }
+.cheatsheet .prose table { font-size: 6.9pt; width: 100%; table-layout: auto; }
+/* wrapping + zebra apply ONLY to comparison tables (.table-wrap),
+   never to journal/schedule ledgers (whose amounts must stay on one line) */
+.cheatsheet .table-wrap thead th {
+  background: var(--accent); color: #fff;
+  border: 0; padding: 2pt 5pt;
+  font-size: 6.4pt; font-weight: 700; letter-spacing: 0.02em;
+  white-space: normal;
+}
+.cheatsheet .table-wrap tbody td {
+  padding: 2pt 5pt; border-bottom: 0.4pt solid var(--ledger-line);
+  white-space: normal; overflow-wrap: anywhere; vertical-align: top;
+}
+.cheatsheet .table-wrap tbody tr:nth-child(even) td { background: var(--ledger-tint); }
+
+/* Formula = equation: white ground, mono, green edge (distinct from cards) */
+.cheatsheet .formula-box {
+  background: #fff; border: 0.5pt solid var(--ledger-line);
+  border-left: 2pt solid var(--accent); border-radius: 0;
+  padding: 3pt 7pt; margin: 0.32em 0;
+}
+.cheatsheet .formula-line { font-family: var(--font-figures); font-size: 6.9pt; line-height: 1.35; }
+.cheatsheet .formula-line + .formula-line { border-top: 0.3pt dotted var(--hairline); margin-top: 1.5pt; padding-top: 1.5pt; }
+
+/* Journal = the ledger: zebra rows + red debit|credit divide */
+.cheatsheet .journal { margin: 0.32em 0; border: 0.5pt solid var(--ledger-line); border-radius: 0; box-shadow: none; }
+.cheatsheet .journal-caption {
+  background: var(--ledger-tint); color: var(--ink);
+  font-size: 6.7pt; font-weight: 700; letter-spacing: 0.01em;
+  padding: 2pt 6pt; border-bottom: 0.5pt solid var(--ledger-line);
+}
+.cheatsheet .journal table { font-size: 6.9pt; table-layout: auto; }
+.cheatsheet .journal td { padding: 1.5pt 5pt; border-bottom: 0.3pt solid color-mix(in srgb, var(--ledger-line) 60%, transparent); }
+.cheatsheet .journal .je-side { font-size: 6.4pt; width: 1.9em; white-space: nowrap; }
+.cheatsheet .journal .je-account { white-space: normal; overflow-wrap: anywhere; }
+.cheatsheet .journal .je-account.je-credit { padding-left: 1.4em; }
+.cheatsheet .journal .je-amount { min-width: 3.4em; white-space: nowrap; }
+.cheatsheet .journal .je-amount.je-dr { border-left: 2pt double var(--rule-red); }
+.cheatsheet .journal .je-amount.je-cr { border-left: 0.4pt solid var(--ledger-line); }
+
+/* Callout = advisory: colored edge + tint + label (distinct from formula/journal) */
+.cheatsheet .callout { margin: 0.32em 0; padding: 3pt 7pt; border-radius: 0; font-size: 6.9pt; }
+.cheatsheet .callout-label { font-size: 6.2pt; letter-spacing: 0.08em; margin-bottom: 1pt; }
+
+/* Recap = ruled footer summary */
+.cheatsheet .recap { margin: 0.45em 0; padding: 4pt 8pt; border-radius: 0; background: var(--accent-soft); border: 0.5pt solid var(--accent); font-size: 6.9pt; }
+.cheatsheet .recap-label { font-family: var(--font-body); font-size: 6.4pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.cheatsheet .recap ol { padding-left: 1.1em; }
+.cheatsheet .recap li { margin: 0.12em 0; }
+
+/* Diagram: capped + flattened to the workpaper palette (light nodes, thin rules) */
+.cheatsheet .diagram { padding: 2pt; margin: 0.32em 0; border: 0.5pt dashed var(--ledger-line); }
+.cheatsheet .diagram svg { max-height: 44mm; width: auto; margin: 0 auto; }
+.cheatsheet .diagram svg .node rect,
+.cheatsheet .diagram svg .node polygon,
+.cheatsheet .diagram svg .node circle,
+.cheatsheet .diagram svg .node path {
+  fill: #fff !important;
+  stroke: var(--accent) !important;
+  stroke-width: 0.75pt !important;
+}
+.cheatsheet .diagram svg .node .nodeLabel,
+.cheatsheet .diagram svg .nodeLabel { color: var(--ink) !important; fill: var(--ink) !important; }
+.cheatsheet .diagram svg .edgePaths path,
+.cheatsheet .diagram svg .flowchart-link { stroke: var(--graphite) !important; }
+.cheatsheet .diagram svg .edgeLabel { background: #fff !important; color: var(--ink-soft) !important; }
+
+/* Each module = its own landscape sheet in a unit print */
+body.printing-unit .print-root.cheatsheet .print-module { page-break-before: always; }
+body.printing-unit .print-root.cheatsheet .print-module:first-of-type { page-break-before: auto; }

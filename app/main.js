@@ -3,6 +3,7 @@
 import { initRenderer, renderMarkdown } from './render.js';
 import { printModule, printUnit } from './print.js';
 import { isRead, setRead, unitProgress } from './progress.js';
+import { ensureIndex, searchIndex } from './search.js';
 
 const state = {
   manifest: null,
@@ -46,8 +47,8 @@ function escapeHtml(s) {
 
 function buildSidebar() {
   const s = state.strings;
-  const nav = document.getElementById('sidebar');
-  nav.setAttribute('aria-label', s.nav.unitsLabel);
+  document.getElementById('sidebar').setAttribute('aria-label', s.nav.unitsLabel);
+  const nav = document.getElementById('sidebar-nav');
   nav.innerHTML = state.manifest.units
     .map((unit) => {
       const prog = unitProgress(unit);
@@ -163,7 +164,7 @@ function moduleNeighbors(unit, mod) {
   };
 }
 
-async function renderModule(unitId, moduleId) {
+async function renderModule(unitId, moduleId, highlight) {
   const s = state.strings;
   const unit = findUnit(unitId);
   const mod = findModule(unit, moduleId);
@@ -200,11 +201,12 @@ async function renderModule(unitId, moduleId) {
       ? `<p class="slides-only-notice">${escapeHtml(s.module.slidesOnlyNotice)}</p>`
       : '';
 
-  content.innerHTML = `<article class="module-frame">
+  const cheatsheet = unit.layout === 'cheatsheet' ? ' cheatsheet' : '';
+  content.innerHTML = `<article class="module-frame${cheatsheet}">
     <div class="module-eyebrow">
       <span class="module-ref">${unit.id} ${mod.id}</span>
       <span>${escapeHtml(unit.title)}</span>
-      <span>· ${mod.lessons} ${s.module.lessonsSuffix}</span>
+      ${unit.layout === 'cheatsheet' ? '' : `<span>· ${mod.lessons} ${s.module.lessonsSuffix}</span>`}
     </div>
     <h1 class="module-heading">${escapeHtml(mod.title)}</h1>
     <div class="module-actions">
@@ -218,6 +220,7 @@ async function renderModule(unitId, moduleId) {
   </article>`;
 
   await renderMarkdown(md, document.getElementById('prose'));
+  if (highlight) highlightMatches(document.getElementById('prose'), highlight);
 
   const { prev, next } = moduleNeighbors(unit, mod);
   document.getElementById('module-footer').innerHTML = `
@@ -239,18 +242,55 @@ async function renderModule(unitId, moduleId) {
 /* ---------- Router ---------- */
 
 async function route() {
-  const hash = location.hash.replace(/^#\/?/, '');
+  const raw = location.hash.replace(/^#\/?/, '');
   closeSidebar();
-  if (!hash) {
+  if (!raw) {
     markActiveLink('');
     renderHome();
     return;
   }
-  const [unitId, moduleId] = hash.split('/');
+  const [path, queryStr] = raw.split('?');
+  const [unitId, moduleId] = path.split('/');
+  const highlight = new URLSearchParams(queryStr || '').get('q') || '';
   markActiveLink(`${unitId}/${moduleId}`);
-  await renderModule(unitId, moduleId);
+  await renderModule(unitId, moduleId, highlight);
   document.getElementById('content').scrollTop = 0;
-  window.scrollTo(0, 0);
+  if (!highlight) window.scrollTo(0, 0);
+}
+
+/* Wrap search matches in <mark> and scroll to the first one. */
+function highlightMatches(container, q) {
+  const term = q.trim();
+  if (term.length < 2) return;
+  const rx = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  const targets = [];
+  while (walker.nextNode()) {
+    const n = walker.currentNode;
+    if (!n.nodeValue.trim() || n.parentElement.closest('.mermaid-src, mark')) continue;
+    rx.lastIndex = 0;
+    if (rx.test(n.nodeValue)) targets.push(n);
+  }
+  let first = null;
+  for (const node of targets) {
+    const s = node.nodeValue;
+    const frag = document.createDocumentFragment();
+    let last = 0;
+    let m;
+    rx.lastIndex = 0;
+    while ((m = rx.exec(s))) {
+      if (m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+      const mark = document.createElement('mark');
+      mark.textContent = m[0];
+      frag.appendChild(mark);
+      if (!first) first = mark;
+      last = m.index + m[0].length;
+      if (rx.lastIndex === m.index) rx.lastIndex++;
+    }
+    if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  }
+  if (first) first.scrollIntoView({ block: 'center', behavior: 'auto' });
 }
 
 /* ---------- Mobile nav ---------- */
@@ -269,12 +309,112 @@ function wireChrome() {
   const toggle = document.getElementById('nav-toggle');
   const sidebar = document.getElementById('sidebar');
   const scrim = document.getElementById('sidebar-scrim');
+  const mobile = window.matchMedia('(max-width: 900px)');
   toggle.addEventListener('click', () => {
-    const open = sidebar.classList.toggle('is-open');
-    scrim.hidden = !open;
-    toggle.setAttribute('aria-expanded', String(open));
+    if (mobile.matches) {
+      const open = sidebar.classList.toggle('is-open');
+      scrim.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    } else {
+      const collapsed = document.body.classList.toggle('nav-collapsed');
+      try {
+        localStorage.setItem('ledgerbook.nav', collapsed ? 'collapsed' : 'open');
+      } catch {}
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+    }
   });
   scrim.addEventListener('click', closeSidebar);
+
+  wireTheme();
+  wireSearch();
+}
+
+/* ---------- Theme toggle ---------- */
+
+const SUN_ICON =
+  '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4L19 19M19 5l-1.6 1.6M6.6 17.4L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const MOON_ICON =
+  '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.6A8 8 0 0 1 9.4 4 7 7 0 1 0 20 14.6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+
+function isDarkTheme() {
+  const t = document.documentElement.dataset.theme;
+  if (t === 'dark') return true;
+  if (t === 'light') return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function paintThemeButton(btn) {
+  const dark = isDarkTheme();
+  btn.innerHTML = dark ? SUN_ICON : MOON_ICON;
+  btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  btn.title = dark ? 'Light mode' : 'Dark mode';
+}
+
+function wireTheme() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  paintThemeButton(btn);
+  btn.addEventListener('click', () => {
+    const next = isDarkTheme() ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('ledgerbook.theme', next);
+    } catch {}
+    paintThemeButton(btn);
+  });
+}
+
+/* ---------- Cross-topic search ---------- */
+
+function wireSearch() {
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  const nav = document.getElementById('sidebar-nav');
+  if (!input) return;
+  let timer;
+
+  const clear = () => {
+    results.hidden = true;
+    results.innerHTML = '';
+    nav.hidden = false;
+  };
+
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    const q = input.value;
+    if (q.trim().length < 2) {
+      clear();
+      return;
+    }
+    timer = setTimeout(async () => {
+      results.hidden = false;
+      nav.hidden = true;
+      results.innerHTML = '<li class="search-status">Searching…</li>';
+      const docs = await ensureIndex(state.manifest, fetchModuleMd);
+      const hits = searchIndex(docs, q);
+      if (!hits.length) {
+        results.innerHTML = `<li class="search-status">No matches for “${escapeHtml(q)}”</li>`;
+        return;
+      }
+      results.innerHTML = hits
+        .map(
+          (h) => `<li><a class="search-hit" href="#/${h.unitId}/${h.moduleId}?q=${encodeURIComponent(q)}">
+            <span class="search-hit-ref">${h.unitId} ${h.moduleId}${h.section ? ' · ' + escapeHtml(h.section) : ''}</span>
+            <span class="search-hit-title">${escapeHtml(h.title)}</span>
+            ${h.snippet ? `<span class="search-hit-snip">${escapeHtml(h.snippet)}</span>` : ''}
+          </a></li>`
+        )
+        .join('');
+    }, 160);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      input.value = '';
+      clear();
+      input.blur();
+    }
+  });
 }
 
 /* ---------- Boot ---------- */
@@ -289,6 +429,12 @@ async function boot() {
   document.title = strings.appName;
 
   initRenderer(strings);
+  try {
+    if (localStorage.getItem('ledgerbook.nav') === 'collapsed') {
+      document.body.classList.add('nav-collapsed');
+      document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
+    }
+  } catch {}
   wireChrome();
   buildSidebar();
   window.addEventListener('hashchange', route);

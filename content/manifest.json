@@ -303,6 +303,62 @@
           "lessons": 4
         }
       ]
+    },
+    {
+      "id": "R",
+      "title": "Last Revision — Cheat Sheet",
+      "layout": "cheatsheet",
+      "modules": [
+        {
+          "id": "R1",
+          "title": "F1 High-Yield — Financial Reporting & Equity",
+          "status": "ready",
+          "source": "review",
+          "lessons": 4
+        },
+        {
+          "id": "R2",
+          "title": "F2 High-Yield — Revenue, Adjustments & Analysis",
+          "status": "ready",
+          "source": "review",
+          "lessons": 8
+        },
+        {
+          "id": "R3",
+          "title": "F3 High-Yield — Assets",
+          "status": "ready",
+          "source": "review",
+          "lessons": 6
+        },
+        {
+          "id": "R4",
+          "title": "F4 High-Yield — Liabilities",
+          "status": "ready",
+          "source": "review",
+          "lessons": 7
+        },
+        {
+          "id": "R5",
+          "title": "F5 High-Yield — Investments, Consolidations & Special Topics",
+          "status": "ready",
+          "source": "review",
+          "lessons": 7
+        },
+        {
+          "id": "R6",
+          "title": "F6 High-Yield — Not-for-Profit & Governmental",
+          "status": "ready",
+          "source": "review",
+          "lessons": 6
+        },
+        {
+          "id": "R7",
+          "title": "Exam-Day Playbook — Excel, Timing & Strategy",
+          "status": "ready",
+          "source": "review",
+          "lessons": 3
+        }
+      ]
     }
   ]
 }

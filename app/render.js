@@ -128,6 +128,17 @@ function buildMarked() {
         diagramSeq += 1;
         return `<div class="diagram"><pre class="mermaid-src" id="diagram-${diagramSeq}">${escapeHtml(text)}</pre></div>`;
       }
+      if (lang === 'formula') {
+        const inline = (l) =>
+          window.marked.parseInline ? window.marked.parseInline(l) : escapeHtml(l);
+        const lines = text
+          .trim()
+          .split('\n')
+          .filter((l) => l.trim())
+          .map((l) => `<div class="formula-line">${inline(l)}</div>`)
+          .join('');
+        return `<div class="formula-box">${lines}</div>`;
+      }
       return `<pre><code>${escapeHtml(text)}</code></pre>`;
     },
     blockquote({ tokens }) {
